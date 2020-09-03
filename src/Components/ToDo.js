@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import { GlobalContext } from "../Context/GlobalState";
 
-function ToDo({ toDo, toggleCompleted, removeTodo }) {
+function ToDo({ toDo }) {
+  const { toggleCompleted, removeTodo } = useContext(GlobalContext);
   const completedStyle = {
     font: "italic",
     color: "#cdcdcd",
@@ -12,7 +14,7 @@ function ToDo({ toDo, toggleCompleted, removeTodo }) {
       <div className="todo-item">
         <input
           type="checkbox"
-          checked={toDo.isCompleted}
+          checked={toDo.isCompleted ? toDo.isCompleted : false}
           onChange={() => toggleCompleted(toDo.id)}
         />
         <p style={toDo.isCompleted ? completedStyle : null}>{toDo.task}</p>
